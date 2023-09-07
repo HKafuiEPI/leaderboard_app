@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classement des équipes</title>
+</head>
+<body>
+    <h1>Classement des équipes</h1>
+    <table>
+        <tr>
+            <th>Image</th>
+            <th>Équipe</th>
+            <th>Points</th>
+            {% if current_user.is_admin %}
+            <th>Actions</th>
+            {% endif %}
+        </tr>
+        {% for team in teams %}
+        <tr>
+            <td><img src="{{ url_for('static', filename='images/zeus.png') }}" alt="{{ team.name }}" width="50"></td>
+            <td>{{ team.name }}</td>
+            <td>{{ team.points }}</td>
+            {% if current_user.is_admin %}
+            <td>
+                <a href="{{ url_for('update_points', team_id=team.id) }}">Modifier</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% if current_user.is_admin %}
+    <a href="{{ url_for('create_team') }}">Create New Team</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    {% endif %}
+</body>
+</html>
+
