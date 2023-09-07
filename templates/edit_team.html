@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Team</title>
+</head>
+<body>
+    <h1>Edit Team</h1>
+    <form method="POST">
+        <label for="name">Team Name:</label>
+        <input type="text" name="name" value="{{ team['name'] }}" required><br>
+        
+        <label for="points">Points:</label>
+        <input type="number" name="points" value="{{ team['points'] }}" required><br>
+        
+        <!-- Update other team attributes fields here if needed -->
+
+        <button type="submit">Save Changes</button>
+    </form>
+    <a href="{{ url_for('leaderboard') }}">Back to Leaderboard</a>
+</body>
+</html>

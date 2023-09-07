@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mise à jour des points</title>
+</head>
+<body>
+    <h1>Mise à jour des points</h1>
+    <form method="POST">
+        <label for="team_id">Équipe:</label>
+        <span>{{ team.name }}</span><br><br>
+        <select id="team_id" name="team_id">
+            {% for team in teams %}
+                <option value="{{ team.id }}">{{ team.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label for="current_points">Points actuels:</label>
+        <span>{{ team_points }}</span><br><br>
+        <label for="points">Nouveaux points:</label>
+        <input type="number" id="points" name="points" required><br><br>
+        <input type="submit" value="Mettre à jour">
+    </form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Team</title>
+</head>
+<body>
+    <h1>Create New Team</h1>
+    <form method="POST" enctype="multipart/form-data"> <!-- Ajout de enctype pour les fichiers -->
+        <label for="name">Team Name:</label>
+        <input type="text" name="name" required><br>
+        
+        <label for="points">Points:</label>
+        <input type="number" name="points" required><br>
+        
+        <label for="image">Team Image:</label>
+        <input type="file" name="image" accept="image/*" required><br> <!-- Champ de téléversement d'image -->
+        
+        <button type="submit">Create Team</button>
+    </form>
+    <a href="{{ url_for('leaderboard') }}">Back to Leaderboard</a>
+</body>
+</html>
