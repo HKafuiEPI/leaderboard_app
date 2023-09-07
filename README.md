@@ -1,2 +1,0 @@
-# leaderboard_app
-leaderboard_for_epitech_pool
