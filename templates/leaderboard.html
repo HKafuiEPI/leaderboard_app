@@ -2,9 +2,11 @@
 <html>
 <head>
     <title>Classement des équipes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/leaderboard.css') }}">
 </head>
 <body>
     <h1>Classement des équipes</h1>
+    <a class="login" href="{{ url_for('login') }}">Login</a>
     <table>
         <tr>
             <th>Image</th>
@@ -16,21 +18,20 @@
         </tr>
         {% for team in teams %}
         <tr>
-            <td><img src="{{ team.image_path }}" alt="{{ team.name }}" width="50"></td>
-            <td>{{ team.name }}</td>
-            <td>{{ team.points }}</td>
+            <td><img src="{{ team.image_path }}" alt="{{ team.name }}" width="50" class="img-en-grand"></td>
+            <td class="t-name">{{ team.name }}</td>
+            <td class="t-points">{{ team.points }}</td>
             {% if current_user.is_admin %}
             <td>
-                <a href="{{ url_for('update_points', team_id=team.id) }}">Modifier</a>
+                <a class="modif" href="{{ url_for('update_points', team_id=team.id) }}">Modifier</a>
             </td>
             {% endif %}
         </tr>
         {% endfor %}
     </table>
     {% if current_user.is_admin %}
-    <a href="{{ url_for('create_team') }}">Create New Team</a>
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <a class="create_t" href="{{ url_for('create_team') }}">Create New Team</a>
+    <a class="logout" href="{{ url_for('logout') }}">Logout</a>
     {% endif %}
 </body>
 </html>
-
