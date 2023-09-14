@@ -5,8 +5,42 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/leaderboard.css') }}">
 </head>
 <body>
-    <h1>Classement des équipes</h1>
-    <a class="login" href="{{ url_for('login') }}">Login</a>
+    <header>
+        <div class="logo">
+            <h1>Classement des équipes</h1>
+        </div>
+        <input type="checkbox" id="nav_check" hidden>
+        <nav>
+            <div class="logo">
+                <h1>Classement des équipes</h1>
+            </div>
+            <ul>
+                <li>
+                    <a class="login" href="{{ url_for('login') }}">Login</a>
+                </li>
+                <li>
+                    {% if current_user.is_admin %}
+                    <a class="create_t" href="{{ url_for('create_team') }}">Create New Team</a>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if current_user.is_admin %}
+                    <a class="edit_t">Edit team</a>
+                    {% endif %}
+                </li>
+                <li>
+                    {% if current_user.is_admin %}
+                    <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+        <label for="nav_check" class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </label>
+    </header><br>
     <table>
         <tr>
             <th>Image</th>
@@ -17,21 +51,17 @@
             {% endif %}
         </tr>
         {% for team in teams %}
-        <tr>
-            <td><img src="{{ team.image_path }}" alt="{{ team.name }}" width="50" class="img-en-grand"></td>
-            <td class="t-name">{{ team.name }}</td>
-            <td class="t-points">{{ team.points }}</td>
-            {% if current_user.is_admin %}
+        <tr class="gestion">
             <td>
+                <div class="team-name">{{ team.name }}</div>
+                <img src="{{ team.image_path }}" alt="{{ team.name }}" width="50" class="img-en-grand">
+                <div class="team-points">{{ team.points }}</div>
+                {% if current_user.is_admin %}
                 <a class="modif" href="{{ url_for('update_points', team_id=team.id) }}">Modifier</a>
+                {% endif %}
             </td>
-            {% endif %}
         </tr>
         {% endfor %}
     </table>
-    {% if current_user.is_admin %}
-    <a class="create_t" href="{{ url_for('create_team') }}">Create New Team</a>
-    <a class="logout" href="{{ url_for('logout') }}">Logout</a>
-    {% endif %}
 </body>
 </html>
