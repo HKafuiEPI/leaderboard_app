@@ -125,7 +125,7 @@ nav ul li a.logout:hover {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #7c5a5a;
+    background-color: #000000;
     margin: 0;
     padding: 0;
 }
@@ -141,73 +141,79 @@ body {
 
 .team-name {
     text-align: center;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     margin-bottom: 5px;
+    background-color: #f6f4ffec;
+    padding: 7px;
+    border-radius: 7px;
 }
 
 .team-points {
     text-align: center;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     margin-top: 5px;
+    background-color: #d1cccc;
+    padding: 5px;
+    border-radius: 7px;
 }
 
 .modif {
     display: block;
+    color: #e7e7e7;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
     text-align: center;
+    font-size: 20px;
     margin-top: 5px;
+    background-color: #df3737;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.modif:hover {
+    background-color: #f55e5eee;
 }
 
 
 table {
-    width: 100%;
-    background-color: #d1cccc;
+    width: 85%;
+    background-color: #000000;
+    border-radius: 0 12px 10px 0;
     margin: 20px auto;
     border-collapse: collapse;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
-/*.t-name, .t-points{
-    font-size: 50px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
-    right: 200px;
-}
 
-.modif{
-    color: #FF5733;
+.first {
+    background-color: green;
     font-size: 30px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
-    right: 200px;
 }
 
-.img-en-grand {
-    width: 150px; 
-    height: auto;
+.second {
+    background-color: orange;
+    font-size: 25px;
 }
 
-th, td {
-    padding: 10px;
-    text-align: left;
+.third {
+    background-color: red;
+    font-size: 20px;
 }
 
-th {
-    background-color: #333;
-    color: #fff;
+.first:hover {
+    background-color: green;
+    font-size: 35px;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+.second:hover {
+    background-color: orange;
+    font-size: 30px;
 }
 
-tr {
-    display: inline;
+.third:hover {
+    background-color: red;
+    font-size: 25px;
 }
-
-a {
-    text-decoration: none;
-    color: #007bff;
-}
-
-.modif:hover {
-    color: #fd785a;
-    text-decoration: underline;
-} */
