@@ -1,5 +1,5 @@
 from flask_migrate import Migrate
-from flask import Flask, render_template
+from flask import Flask, render_template, flash
 from flask import Flask, render_template, redirect, url_for
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 from flask_login import login_required
@@ -22,7 +22,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///teams.db'
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 migrate = Migrate(app, db)
-
 
 @login_manager.user_loader
 def load_user(username):
@@ -86,6 +85,8 @@ def login():
             user = User(username)
             login_user(user)
             return redirect(url_for('leaderboard'))
+        else :
+            flash("Authentification failed")
     return render_template('login.html')
 
 ################################################################################
@@ -107,6 +108,7 @@ def update_points():
     if request.method == 'POST':
         team_id = int(request.form['team_id'])  
         new_points = int(request.form['points'])
+        return render_template('update_points.html', team=team, team_points=team.points, teams=Team.query.all())
         team = Team.query.get(team_id)
         if team:
             team.points = new_points

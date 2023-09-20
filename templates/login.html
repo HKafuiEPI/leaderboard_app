@@ -12,6 +12,13 @@
         <label for="password">Mot de passe:</label>
         <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Se connecter">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <h3>{{ message }}</h3>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
     </form>
     <a href="{{ url_for('leaderboard') }}">Back to Leaderboard</a>
 </body>
