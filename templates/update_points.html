@@ -19,6 +19,13 @@
         <label for="points">Nouveaux points:</label>
         <input type="number" id="points" name="points" required><br><br>
         <input type="submit" value="Mettre à jour">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <h3>{{ message }}</h3>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
     </form>
     <a href="{{ url_for('leaderboard') }}">Back to Leaderboard</a>
 </body>

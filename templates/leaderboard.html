@@ -40,23 +40,57 @@
             <div></div>
             <div></div>
         </label>
-    </header><br>
-    <table>
-        {% for team in teams %}
-        <tr class="gestion">
-            <td>
-                <div class="team-name {% if team.position == 1 %}first{% elif team.position == 2 %}second{% elif team.position == 3 %}third{% endif %}">
-                    {{ team.name }}
-                </div>
-                <img src="{{ team.image_path }}" alt="{{ team.name }}" width="50" class="img-en-grand">
-                <div class="team-points">{{ team.points }}</div>
-                <div class="team-position">{{ team.position }}</div>
-                {% if current_user.is_admin %}
-                <a class="modif" href="{{ url_for('update_points', team_id=team.id) }}">Modifier</a>
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
-    </table>    
+    </header>
+
+    <main class="table">
+        <section class="table__body">
+            <table class="background-table">
+                <thead>
+                    <tr>
+                        <th>Classement</th>
+                    </tr>
+                </thead>
+            </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rang</th>
+                        <th>Image</th>
+                        <th>Équipe</th>
+                        <th>Points</th>
+                        {% if current_user.is_admin %}
+                        <th>Actions</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for team in teams %}
+                    <tr>
+                        <td class="classement">{{ loop.index }}</td>
+                        <td><img src="{{ team.image_path }}" alt="{{ team.name }}" class="img-en-grand"></td>
+                        <td class="t-name">
+                            {{ team.name }}
+                            {% if loop.index == 1 %}
+                                <img src="{{ url_for('static', filename='images/winner.png') }}" alt="premier">
+                            {% endif %}
+                            {% if loop.index == 2 %}
+                                <img src="{{ url_for('static', filename='images/deuxieme.png') }}" alt="deuxieme">
+                            {% endif %}
+                            {% if loop.index == 3 %}
+                                <img src="{{ url_for('static', filename='images/troisieme.png') }}" alt="troisieme">
+                            {% endif %}
+                        </td>
+                        <td class="t-points">{{ team.points }}</td>
+                        {% if current_user.is_admin %}
+                        <td>
+                            <a class="modif" href="{{ url_for('update_points', team_id=team.id) }}">Modifier</a>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
 </body>
 </html>

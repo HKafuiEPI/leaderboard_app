@@ -108,17 +108,19 @@ def update_points():
     if request.method == 'POST':
         team_id = int(request.form['team_id'])  
         new_points = int(request.form['points'])
-        return render_template('update_points.html', team=team, team_points=team.points, teams=Team.query.all())
-        team = Team.query.get(team_id)
-        if team:
-            team.points = new_points
-            db.session.commit()
+        if new_points < 0 :
+            flash("Error: The point of the team should be positive")
+        else :
+            team = Team.query.get(team_id)
+            if team:
+                team.points = new_points
+                db.session.commit()
         
-        return redirect(url_for('leaderboard'))
+            return redirect(url_for('leaderboard'))
     
     team_id = int(request.args.get('team_id'))
     team = Team.query.get(team_id)
-    return render_template('update_points.html', team=team, team_points=team.points, teams=Team.query.all())
+    return render_template('update_points.html', team=team, team_points=team.points, teams=Team .query.all())
 
 ################################################################################
 
