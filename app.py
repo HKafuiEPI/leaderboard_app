@@ -74,9 +74,9 @@ def leaderboard():
             current_points = team.points
         position += 1
     db.session.commit()
-    return render_template('leaderboard.html', teams=teams)
+    return render_template('home.html', teams=teams)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/pool', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -91,7 +91,7 @@ def login():
 
 ################################################################################
 
-@app.route('/logout')
+@app.route('/bye')
 @login_required
 def logout():
     logout_user()

@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Leadboard</title>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&family=Poppins:wght@600&display=swap');
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            background-color: #d9ecf2;
+            font-family: 'Poppins', sans-serif;
+            color: #666
+        }
+
+        .h2 {
+            color: #444;
+            font-family: 'PT Sans', sans-serif
+        }
+
+        .h3 {
+            color: #444;
+            font-family: 'Poppins', sans-serif;
+            vertical-align: middle;
+            
+            
+        }
+
+        thead {
+            font-family: 'Poppins', sans-serif;
+            font-weight: bolder;
+            font-size: 50px;
+            color: #666
+        }
+
+        img {
+            width: 80px;
+            height: 80px
+        }
+
+        .name {
+            display: inline-block
+        }
+
+        .bg-blue {
+            background-color: #EBF5FB;
+            border-radius: 8px
+        }
+
+        .fa-check,
+        .fa-minus {
+            color: blue
+        }
+
+        .bg-blue:hover {
+            background-color: #3e64ff;
+            color: #eee;
+            cursor: pointer
+        }
+
+        .bg-blue:hover .fa-check,
+        .bg-blue:hover .fa-minus {
+            background-color: #3e64ff;
+            color: #eee
+        }
+
+        .table thead th,
+        .table td {
+            border: none
+        }
+
+        .table tbody td:first-child {
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px
+        }
+
+        .table tbody td:last-child {
+            border-bottom-right-radius: 10px;
+            border-top-right-radius: 10px
+        }
+
+        #spacing-row {
+            height: 20px
+        }
+
+        @media(max-width:575px) {
+            .container {
+                width: 125%;
+                padding: 20px 10px
+            }
+        }
+    </style>
+    <script type='text/javascript' src=''></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+    <script type='text/javascript'
+        src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
+</head>
+
+<body oncontextmenu='return false' class='snippet-body'>
+    <div class="container rounded mt-5 bg-white p-md-5">
+        <div class="h2 font-weight-bold">Leadboard</div>
+
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <!-- <th>Rang</th> -->
+                        <th>#Pic📷</th>
+                        <th>#Team🔥</th>
+                        <th>#Points✨</th>
+                        {% if current_user.is_admin %}
+                        <th>Actions</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for team in teams %}
+
+
+                    <tr class="bg-blue">
+                        <!-- <td class="pt-2"> {{ loop.index }}</td> -->
+                        <td class="pt-2"><img src="{{ team.image_path }}" alt="{{ team.name }}"
+                                class="img-en-grand rounded-circle"></td>
+                        <td class="h3">
+                            {{ team.name }}
+                            <!-- {% if loop.index == 1 %}
+                            <img src="{{ url_for('static', filename='images/winner.png') }}" alt="premier">
+                            <div class="h2 font-weight-bold">Leadboard</div>
+                            {% endif %}
+                            {% if loop.index == 2 %}
+                            <img src="{{ url_for('static', filename='images/deuxieme.png') }}" alt="deuxieme">
+                            {% endif %}
+                            {% if loop.index == 3 %}
+                            <img src="{{ url_for('static', filename='images/troisieme.png') }}" alt="troisieme">
+                            {% endif %} -->
+                        </td>
+                        <td class="t-points h3">{{ team.points }}</td>
+                        {% if current_user.is_admin %}
+                        <td>
+                            <a class="modif" href="{{ url_for('update_points', team_id=team.id) }}">Modifier</a>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    <tr id="spacing-row">
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                    
+
+                  
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+    
+   
+    <div>
+       
+        <footer class="footer">
+
+            <div class="container">
+          
+              <div class="row">
+          
+                <div class="">
+                    <tr id="spacing-row">
+                        <td></td>
+                    </tr>
+                    <br>
+                  <p>&copy; 2023 leaderboard App made by Pedago intern 😎😋🔥. All rights Reserved</p>
+          
+                </div> <!-- /.col -->
+          
+              </div> <!-- /.row -->
+          
+            </div> <!-- /.container -->
+            
+          </footer>
+
+          <!-- <footer class="footer">
+
+            <div class="container">
+          
+              <div class="row">
+          
+                <div class="col-sm-3">
+          
+                  <h4>leaderboard App</h4>
+          
+                  <br>
+          
+                  <p>A web app to show the score of the best ranked team</p>  
+          
+                  <hr>    
+          
+                  <p>&copy; 2023 leaderboard App made by Pedago intern 😎😋🔥. All rights Reserved</p>
+          
+                </div> 
+          
+                
+          
+                
+          
+              </div> 
+          
+            </div> 
+            
+          </footer> -->
+    </div>
+    <script type='text/javascript'></script>
+</body>
+
+</html>
