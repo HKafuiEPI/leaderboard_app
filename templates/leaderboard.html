@@ -84,6 +84,7 @@
                         {% if current_user.is_admin %}
                         <td>
                             <a class="modif" href="{{ url_for('update_points', team_id=team.id) }}">Modifier</a>
+                            
                         </td>
                         {% endif %}
                     </tr>
