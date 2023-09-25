@@ -41,8 +41,9 @@
         }
 
         img {
-            width: 80px;
-            height: 80px
+            width: 100px;
+            height: auto;
+            
         }
 
         .name {
@@ -129,19 +130,25 @@
                     <tr class="bg-blue">
                         <!-- <td class="pt-2"> {{ loop.index }}</td> -->
                         <td class="pt-2"><img src="{{ team.image_path }}" alt="{{ team.name }}"
-                                class="img-en-grand rounded-circle"></td>
+                                class="img-en-grand"></td>
                         <td class="h3">
-                            {{ team.name }}
-                            <!-- {% if loop.index == 1 %}
-                            <img src="{{ url_for('static', filename='images/winner.png') }}" alt="premier">
-                            <div class="h2 font-weight-bold">Leadboard</div>
+                            {% if loop.index == 1 %}
+                            <h1> {{ team.name }} 🥇</h1>
+                            <!-- <h1>🥇🥈🥉</h1> -->
+                            <!-- <img src="{{ url_for('static', filename='images/winner.png') }}" alt="premier"> -->
                             {% endif %}
                             {% if loop.index == 2 %}
-                            <img src="{{ url_for('static', filename='images/deuxieme.png') }}" alt="deuxieme">
+                           <h1> {{ team.name }} 🥈 </h1> 
+                            <!-- <img src="{{ url_for('static', filename='images/deuxieme.png') }}" alt="deuxieme"> -->
                             {% endif %}
                             {% if loop.index == 3 %}
-                            <img src="{{ url_for('static', filename='images/troisieme.png') }}" alt="troisieme">
-                            {% endif %} -->
+                            <h1>  {{ team.name }} 🥉 </h1>
+                            <!-- <img src="{{ url_for('static', filename='images/troisieme.png') }}" alt="troisieme"> -->
+                            {% endif %}
+                            {% if loop.index == 4 %}
+                            <h1> {{ team.name }}  </h1>
+                            <!-- <img src="{{ url_for('static', filename='images/troisieme.png') }}" alt="troisieme"> -->
+                            {% endif %}
                         </td>
                         <td class="t-points h3">{{ team.points }}</td>
                         {% if current_user.is_admin %}
