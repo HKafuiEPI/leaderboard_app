@@ -16,34 +16,41 @@
                 width: 100%;
             }
         }
+
         @media (max-width: 575px) {
             .container {
                 width: 100%;
                 padding: 10px;
             }
         }
+
         * {
             box-sizing: border-box
         }
+
         body {
             background-color: #d9ecf2;
             font-family: 'Poppins', sans-serif;
             color: #666
         }
+
         .h2 {
             color: #444;
             font-family: 'PT Sans', sans-serif
         }
+
         .h3 {
             color: #444;
             font-family: 'Poppins', sans-serif;
             vertical-align: middle;
         }
+
         .h1 {
             color: #444;
             font-family: 'Poppins', sans-serif;
             vertical-align: middle;
         }
+
         /* .btny {
             vertical-align: middle;  
         } */
@@ -71,14 +78,14 @@
 
         .fa-check,
         .fa-minus {
-            color: blue
+            color: rgb(105, 105, 182)
         }
 
-        .bg-blue:hover {
-            background-color: #3e64ff;
+        /* .bg-blue:hover {
+            background-color: #293f97;
             color: #eee;
             cursor: pointer
-        }
+        } */
 
         .bg-blue:hover .fa-check,
         .bg-blue:hover .fa-minus {
@@ -140,51 +147,64 @@
 
                     {% for team in teams %}
 
-
                     <tr class="bg-blue">
+
                         <!-- <td class="pt-2"> {{ loop.index }}</td> -->
-                        <td class="pt-2"><img src="{{ team.image_path }}" alt="{{ team.name }}" class="rounded-circle">
-                        </td>
+
+                        <td class="pt-2"><img src="{{ team.image_path }}" alt="{{ team.name }}"
+                                class="img-en-grand rounded-circle"></td>
+
                         <td class="h3">
-                            {{ team.name }}
+
+                            {% if team.points > 0 %}
+
                             {% if loop.index == 1 %}
-                            <!-- <h1> {{ team.name }} 🥇</h1> -->
-                            <!-- <h1>🥇🥈🥉</h1> -->
-                            <!-- <img src="{{ url_for('static', filename='images/winner.png') }}" alt="premier"> -->
+
+                            <h1> {{ team.name }} 🥇</h1>
+
+                            {% elif loop.index == 2 %}
+
+                            <h1> {{ team.name }} 🥈</h1>
+
+                            {% elif loop.index == 3 %}
+
+                            <h1>{{ team.name }} 🥉 </h1>
+
+                            {% else %}
+
+                            <h1>{{ team.name }}</h1>
+
                             {% endif %}
-                            {% if loop.index == 2 %}
-                            <!-- <h1> {{ team.name }} 🥈 </h1>  -->
-                            <!-- <img src="{{ url_for('static', filename='images/deuxieme.png') }}" alt="deuxieme"> -->
+
+                            {% else %}
+
+                            <h1>{{ team.name }}</h1>
+
                             {% endif %}
-                            {% if loop.index == 3 %}
-                            <!-- <h1>  {{ team.name }} 🥉 </h1> -->
-                            <!-- <img src="{{ url_for('static', filename='images/troisieme.png') }}" alt="troisieme"> -->
-                            {% endif %}
-                            {% if loop.index == 4 %}
-                            <!-- <h1> {{ team.name }}  </h1> -->
-                            <!-- <img src="{{ url_for('static', filename='images/troisieme.png') }}" alt="troisieme"> -->
-                            {% endif %}
+
                         </td>
-                        <td class="t-points h1">{{ team.points }} <style></style>
-                        </td>
+
+                        <td class="t-points h3">{{ team.points }}</td>
+
                         {% if current_user.is_admin %}
+
                         <td>
+
                             <a class="modif" href="{{ url_for('update_points', team_id=team.id) }}">Modifier</a>
-                            <!-- <td>
-                                <button class="btn btn-xs btn-primary" onclick="window.location.href='{{ url_for('update_points', team_id=team.id) }}'" style="vertical-align: middle;">
-                                    <i class="fa fa-pencil"></i> Modifier
-                                </button>
-                            </td> -->
+
                         </td>
+
                         {% endif %}
+
                     </tr>
+
                     <tr id="spacing-row">
+
                         <td></td>
+
                     </tr>
+
                     {% endfor %}
-
-
-
 
                 </tbody>
             </table>
