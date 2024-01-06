@@ -198,6 +198,5 @@ def delete_team(team_id):
     # Redirigez l'utilisateur vers la page du classement
     return redirect(url_for('leaderboard'))
 
-
 if __name__ == '__main__':
     app.run(debug=True)
