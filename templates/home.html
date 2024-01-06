@@ -163,6 +163,7 @@
                         {% if current_user.is_admin %}
                         <td>
                             <a class="modif" href="{{ url_for('update_points', team_id=team.id) }}">Modifier</a>
+                            <a href="{{ url_for('delete_team', team_id=team.id) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette équipe ?')">Supprimer</a>
                             <!-- <td>
                                 <button class="btn btn-xs btn-primary" onclick="window.location.href='{{ url_for('update_points', team_id=team.id) }}'" style="vertical-align: middle;">
                                     <i class="fa fa-pencil"></i> Modifier
