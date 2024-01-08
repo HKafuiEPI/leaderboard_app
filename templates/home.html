@@ -4,25 +4,11 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-
     <title>Leadboard</title>
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&family=Poppins:wght@600&display=swap');
-
-        @media (max-width: 575px) {
-            .container {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 575px) {
-            .container {
-                width: 100%;
-                padding: 10px;
-            }
-        }
 
         * {
             box-sizing: border-box
@@ -42,18 +28,19 @@
         .h3 {
             color: #444;
             font-family: 'Poppins', sans-serif;
-            vertical-align: middle;
+            vertical-align: middle;  
         }
 
         .h1 {
             color: #444;
             font-family: 'Poppins', sans-serif;
-            vertical-align: middle;
+            vertical-align: middle;  
         }
 
         /* .btny {
             vertical-align: middle;  
         } */
+
         thead {
             font-family: 'Poppins', sans-serif;
             font-weight: bolder;
@@ -63,9 +50,9 @@
 
         img {
             width: 100px;
-            height: 100px;
+            height: auto;
+            
         }
-
 
         .name {
             display: inline-block
@@ -78,14 +65,14 @@
 
         .fa-check,
         .fa-minus {
-            color: rgb(105, 105, 182)
+            color: blue
         }
 
-        /* .bg-blue:hover {
-            background-color: #293f97;
+        .bg-blue:hover {
+            background-color: #3e64ff;
             color: #eee;
             cursor: pointer
-        } */
+        }
 
         .bg-blue:hover .fa-check,
         .bg-blue:hover .fa-minus {
@@ -147,64 +134,52 @@
 
                     {% for team in teams %}
 
+
                     <tr class="bg-blue">
-
                         <!-- <td class="pt-2"> {{ loop.index }}</td> -->
-
                         <td class="pt-2"><img src="{{ team.image_path }}" alt="{{ team.name }}"
-                                class="img-en-grand rounded-circle"></td>
-
+                                class="img-en-grand"></td>
                         <td class="h3">
-
-                            {% if team.points > 0 %}
-
+                            {{ team.name }}
                             {% if loop.index == 1 %}
-
-                            <h1> {{ team.name }} 🥇</h1>
-
-                            {% elif loop.index == 2 %}
-
-                            <h1> {{ team.name }} 🥈</h1>
-
-                            {% elif loop.index == 3 %}
-
-                            <h1>{{ team.name }} 🥉 </h1>
-
-                            {% else %}
-
-                            <h1>{{ team.name }}</h1>
-
+                            <!-- <h1> {{ team.name }} 🥇</h1> -->
+                            <!-- <h1>🥇🥈🥉</h1> -->
+                            <!-- <img src="{{ url_for('static', filename='images/winner.png') }}" alt="premier"> -->
                             {% endif %}
-
-                            {% else %}
-
-                            <h1>{{ team.name }}</h1>
-
+                            {% if loop.index == 2 %}
+                           <!-- <h1> {{ team.name }} 🥈 </h1>  -->
+                            <!-- <img src="{{ url_for('static', filename='images/deuxieme.png') }}" alt="deuxieme"> -->
                             {% endif %}
-
+                            {% if loop.index == 3 %}
+                            <!-- <h1>  {{ team.name }} 🥉 </h1> -->
+                            <!-- <img src="{{ url_for('static', filename='images/troisieme.png') }}" alt="troisieme"> -->
+                            {% endif %}
+                            {% if loop.index == 4 %}
+                            <!-- <h1> {{ team.name }}  </h1> -->
+                            <!-- <img src="{{ url_for('static', filename='images/troisieme.png') }}" alt="troisieme"> -->
+                            {% endif %}
                         </td>
-
-                        <td class="t-points h3">{{ team.points }}</td>
-
+                        <td class="t-points h1">{{ team.points }} <style></style></td>
                         {% if current_user.is_admin %}
-
                         <td>
-
                             <a class="modif" href="{{ url_for('update_points', team_id=team.id) }}">Modifier</a>
-
+                            
+                            <a href="{{ url_for('delete_team', team_id=team.id) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette équipe ?')">Supprimer</a>
+                            <!-- <td>
+                                <button class="btn btn-xs btn-primary" onclick="window.location.href='{{ url_for('update_points', team_id=team.id) }}'" style="vertical-align: middle;">
+                                    <i class="fa fa-pencil"></i> Modifier
+                                </button>
+                            </td> -->
                         </td>
-
                         {% endif %}
-
                     </tr>
-
                     <tr id="spacing-row">
-
                         <td></td>
-
                     </tr>
-
                     {% endfor %}
+                    
+
+                  
 
                 </tbody>
             </table>
@@ -213,32 +188,32 @@
 
 
     </div>
-
-
+    
+   
     <div>
-
+       
         <footer class="footer">
 
             <div class="container">
-
-                <div class="row">
-
-                    <div class="">
-                        <tr id="spacing-row">
-                            <td></td>
-                        </tr>
-                        <br>
-                        <p>&copy; 2023 leaderboard App made by Pedago intern 😎😋🔥. All rights Reserved</p>
-
-                    </div> <!-- /.col -->
-
-                </div> <!-- /.row -->
-
+          
+              <div class="row">
+          
+                <div class="">
+                    <tr id="spacing-row">
+                        <td></td>
+                    </tr>
+                    <br>
+                  <p>&copy; 2023 leaderboard App made by Pedago intern 😎😋🔥. All rights Reserved</p>
+          
+                </div> <!-- /.col -->
+          
+              </div> <!-- /.row -->
+          
             </div> <!-- /.container -->
+            
+          </footer>
 
-        </footer>
-
-        <!-- <footer class="footer">
+          <!-- <footer class="footer">
 
             <div class="container">
           

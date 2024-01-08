@@ -127,20 +127,6 @@ def update_points():
 @app.route('/create_team', methods=['GET', 'POST'])
 @login_required
 def create_team():
-    # if not current_user.is_admin:
-    #     return "Accès refusé. Seul l'administrateur peut effectuer cette action."
-    
-    # if request.method == 'POST':
-    #     new_team = Team(
-    #         name=request.form['name'], 
-    #         points=int(request.form['points']), 
-            
-    #     )
-    #     db.session.add(new_team)
-    #     db.session.commit()
-    #     return redirect(url_for('leaderboard'))
-    
-    # return render_template('create_team.html')
     if not current_user.is_admin:
         return "Accès refusé. Seul l'administrateur peut effectuer cette action."
     
@@ -191,5 +177,26 @@ def edit_team(team_id):
 
 ################################################################################
 
+@app.route('/delete_team/<int:team_id>', methods=['GET', 'POST'])
+@login_required
+def delete_team(team_id):
+    # Vérifiez si l'utilisateur actuel a les droits d'administrateur
+    if not current_user.is_admin:
+        return "Accès refusé. Seul l'administrateur peut effectuer cette action."
+
+    # Recherchez l'équipe dans la base de données
+    team = Team.query.get(team_id)
+    
+    # Vérifiez si l'équipe existe
+    if not team:
+        return "Équipe non trouvée."
+
+    # Supprimez l'équipe de la base de données
+    db.session.delete(team)
+    db.session.commit()
+
+    # Redirigez l'utilisateur vers la page du classement
+    return redirect(url_for('leaderboard'))
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
