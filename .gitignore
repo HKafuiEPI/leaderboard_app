@@ -37,3 +37,4 @@ __pycache__/
 # Other
 db.sqlite3
 *.swp
+instance
